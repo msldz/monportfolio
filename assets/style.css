@@ -1,0 +1,605 @@
+/* --- 1. CONFIGURATION DE BASE --- */
+html {
+    scroll-behavior: smooth;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff;
+    color: #1a1a1a;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- 2. BARRE DE NAVIGATION --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.98); /* Quasi opaque */
+    padding: 30px 0; /* Plus de hauteur pour la barre elle-même */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03); /* Ombre très légère */
+    z-index: 1000;
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 60px; /* Beaucoup plus d'espace entre les mots */
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #222; /* Noir doux */
+    
+    /* CHANGEMENTS POUR RESSEMBLER À L'IMAGE : */
+    font-weight: 400; /* Plus fin (Regular) au lieu de gras */
+    text-transform: none; /* Enlève les MAJUSCULES pour avoir "Accueil" */
+    font-size: 1.35rem; /* Beaucoup plus gros */
+    letter-spacing: 0.5px; /* Espacement léger des lettres */
+    
+    transition: color 0.3s ease;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #333;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Nav menu */
+#nav-menu {
+    display: flex;
+    list-style: none;
+}
+
+#nav-menu li {
+    margin: 0 15px;
+}
+
+.nav-link:hover {
+    color: #007bff;
+}
+
+/* --- 3. HERO SECTION (ACCUEIL) --- */
+.hero-section {
+    /* CHANGEMENT : Réduction de la hauteur min pour "remonter" visuellement le contenu
+       et réduire l'espace avec la navbar */
+    min-height: 85vh; 
+    display: flex;
+    align-items: center;
+    /* CHANGEMENT : On retire le text-align center général ici */
+    padding-top: 80px; 
+}
+
+/* Le bloc de texte global */
+.hero-text {
+    max-width: 800px;
+    margin: 0 auto; /* Le bloc reste au milieu de l'écran */
+    /* CHANGEMENT : On force l'alignement du texte à gauche */
+    text-align: left; 
+    display: flex;
+    flex-direction: column;
+}
+
+/* Le Titre ("Bonjour je m'appelle...") */
+.hero-title {
+    /* CHANGEMENT : Taille réduite pour correspondre au texte "études" (1.4rem) */
+    font-size: 1.4rem; 
+    font-weight: 400; /* Moins gras */
+    line-height: 1.2;
+    margin-bottom: 10px;
+    color: #444; /* Gris foncé comme le texte */
+}
+
+/* Ton nom (Massil BENNACER) */
+.highlight-name {
+    /* CHANGEMENT : Le nom devient très gros, noir, et passe à la ligne */
+    display: block; /* Force le passage à la ligne */
+    font-size: 3.5rem; /* Très gros */
+    font-weight: 900; /* Très gras */
+    color: #007bff; /* Bleu */
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/* Texte : Études */
+.hero-lead {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 25px;
+    color: #444;
+}
+
+/* Texte : Recherche de stage */
+.hero-desc {
+    /* CHANGEMENT : Suppression complète du style "carte" (fond gris, bordure, etc.) */
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    
+    /* On applique le même style que le texte des études */
+    font-size: 1.4rem; 
+    color: #444;
+    margin-bottom: 40px;
+    
+    /* Si tu veux garder le gras généré par ton PHP, c'est OK, sinon ajoute font-weight normal ici */
+}
+
+strong {
+    font-weight: 700;
+    color: #000;
+}
+
+/* --- 4. LES BOUTONS --- */
+.hero-btn-container {
+    display: flex;
+    gap: 20px;
+    /* CHANGEMENT : On s'assure que les boutons restent centrés */
+    justify-content: center; 
+    width: 100%; /* Prend toute la largeur pour bien centrer */
+    margin-top: 10px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #111;
+    color: #fff;
+    border-color: #111;
+}
+
+.btn-primary:hover {
+    background-color: #333;
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #111;
+    border: 2px solid #111;
+}
+
+.btn-secondary:hover {
+    background-color: #111;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* Séparateur */
+.separator {
+    border: none;
+    height: 1px;
+    background-color: #ddd;
+    margin: 20px 0;
+}
+
+/* Section compétences */
+.skills-section {
+    padding: 60px 0;
+    background-color: #ffffff;
+}
+
+.skills-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.skills-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.card.soft-skills {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.soft-skills-list {
+    list-style: none;
+    padding: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.soft-skills-list li {
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1rem;
+}
+
+.soft-skills-list li:last-child {
+    border-bottom: none;
+}
+
+.skill-item {
+    margin-bottom: 20px;
+}
+
+.skill-item i {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.skill-item p {
+    margin: 5px 0;
+    font-weight: 600;
+}
+
+.skill-item p:last-child {
+    font-weight: 400;
+    color: #666;
+}
+
+.soft-skills-list {
+    list-style: none;
+    padding: 0;
+}
+
+.soft-skills-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.soft-skills-list li:last-child {
+    border-bottom: none;
+}
+
+/* Section projets */
+.projects-section {
+    padding: 60px 0;
+    background-color: #ffffff;
+}
+
+.projects-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 450px;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.project-card p {
+    margin-bottom: 15px;
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.project-card button {
+    margin-top: auto;
+}
+
+/* Modale */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 85%;
+    max-width: 700px;
+    position: relative;
+    overflow-y: auto; /* Permet le scroll dans la modale si contenu trop long */
+    max-height: 80vh; /* Limite la hauteur pour éviter qu'elle dépasse l'écran */
+    opacity: 0;
+    transform: scale(0.8) translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+
+.modal-content ul {
+    list-style-type: disc;
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.modal-content li {
+    margin: 5px 0;
+}
+
+.modal-content li i {
+    margin-right: 8px;
+
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.contact-section {
+    padding: 60px 0;
+    background-color: #ffffff;
+}
+
+.contact-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.contact-item {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 150px; /* Hauteur minimale pour uniformité */
+}
+
+
+.contact-item i {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.contact-item p {
+    margin-bottom: 10px;
+}
+
+.contact-item a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+}
+
+/* --- 5. RESPONSIVE (MOBILE) --- */
+@media (max-width: 768px) {
+    .highlight-name {
+        font-size: 2.5rem; /* Nom plus petit sur mobile */
+    }
+    
+    .hero-title, .hero-lead, .hero-desc {
+        font-size: 1.1rem; /* Textes lisibles sur mobile */
+    }
+    
+    .navbar {
+        padding: 15px 0; /* Barre plus fine sur mobile */
+    }
+
+    .navbar ul {
+        gap: 20px; /* On rapproche les liens */
+    }
+    
+    .nav-link {
+        font-size: 1rem; /* On réduit la taille pour que ça rentre sur l'écran */
+    }
+
+    .hamburger {
+        display: flex;
+        padding-left: 20px; /* Aligne le hamburger avec le padding des autres éléments (comme .container) */
+    }
+    
+    #nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    #nav-menu.active {
+        display: flex;
+    }
+    
+    #nav-menu li {
+        margin: 10px 0;
+    }
+
+    .skills-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .card {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .card.soft-skills {
+    height: auto;
+    }
+
+    .soft-skills-list {
+    justify-content: flex-start;
+    }
+
+    .soft-skills-list li {
+    padding: 10px 0;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-card img {
+        height: 150px; /* Hauteur réduite sur mobile pour mieux s'adapter */
+    }
+
+    .modal-content {
+        width: 90%;
+        margin: 20% auto;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact-item {
+        width: 90%;
+    }
+
+    .modal-content {
+        width: 90%;
+        margin: 20% auto;
+        max-height: 80vh; /* Ajuste sur mobile */
+    }
+
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: #222;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
